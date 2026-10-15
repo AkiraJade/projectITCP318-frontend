@@ -1,0 +1,562 @@
+/* =========================================================================
+   DOSNOVENTA EDITORIAL SHOP / CATALOG PAGE STYLES (3-BLOCK LAYOUT)
+   ========================================================================= */
+
+.ds-shop-page {
+  background-color: var(--ds-bg-primary, #0c0c0e);
+  color: var(--ds-text-primary, #ffffff);
+  min-height: 100vh;
+  padding-top: var(--ds-nav-height, 72px);
+}
+
+/* =========================================================================
+   BLOCK 2: FULL-WIDTH TOP HEADER & CONTROLS BANNER
+   ========================================================================= */
+.ds-shop-top-block {
+  padding: 2.5rem 0 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: radial-gradient(circle at 10% 20%, rgba(200, 50, 38, 0.06) 0%, transparent 50%),
+              #0e0f12;
+}
+
+.ds-shop-top-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.ds-shop-masthead-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.ds-shop-meta-dot {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 0.75rem;
+}
+
+.ds-shop-published-pill {
+  font-family: var(--ds-font-grotesk, sans-serif);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.25rem 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+
+.ds-shop-main-title {
+  font-family: var(--ds-font-display, 'Syne', sans-serif);
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0;
+  color: #ffffff;
+}
+
+.ds-shop-top-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ds-shop-search-box {
+  position: relative;
+  width: 280px;
+}
+
+.ds-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  font-size: 15px;
+  pointer-events: none;
+}
+
+.ds-shop-search-input {
+  width: 100%;
+  background: #18191d;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  padding: 10px 32px 10px 34px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #ffffff;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.ds-shop-search-input:focus {
+  outline: none;
+  border-color: #C83226;
+}
+
+.ds-search-clear {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.ds-shop-sort-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ds-sort-label {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #9ca3af;
+  font-weight: 600;
+}
+
+.ds-shop-sort-select {
+  background: #18191d;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  padding: 9px 12px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.ds-shop-sort-select:focus {
+  outline: none;
+  border-color: #C83226;
+}
+
+.ds-shop-active-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ds-results-count {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.ds-active-pill {
+  background: rgba(200, 50, 38, 0.15);
+  color: #ff6b6b;
+  border: 1px solid rgba(200, 50, 38, 0.3);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.ds-shop-reset-btn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #9ca3af;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ds-shop-reset-btn:hover {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+/* =========================================================================
+   MAIN 2-COLUMN SPLIT: BLOCK 1 (SIDEBAR) & BLOCK 3 (PRODUCTS GRID)
+   ========================================================================= */
+.ds-shop-main-layout {
+  padding: 2.5rem 0 4rem;
+}
+
+.ds-shop-split-wrapper {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+@media (max-width: 900px) {
+  .ds-shop-split-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* =========================================================================
+   BLOCK 1: LEFT FILTER SIDEBAR
+   ========================================================================= */
+.ds-shop-sidebar {
+  position: sticky;
+  top: 90px;
+}
+
+.ds-sidebar-card {
+  background: #141518;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.ds-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.8rem;
+}
+
+.ds-sidebar-title {
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.ds-sidebar-reset-link {
+  background: none;
+  border: none;
+  color: #C83226;
+  font-size: 11px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.ds-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ds-filter-heading {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+}
+
+/* Category buttons */
+.ds-category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.ds-category-item-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #9ca3af;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.ds-category-item-btn:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+}
+
+.ds-category-item-btn.is-active {
+  background: #C83226;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.ds-cat-indicator {
+  font-size: 8px;
+}
+
+/* Price inputs */
+.ds-price-inputs-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ds-price-field {
+  position: relative;
+  flex: 1;
+}
+
+.ds-price-cur {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  font-size: 11px;
+}
+
+.ds-price-num-input {
+  width: 100%;
+  background: #1d1f23;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 7px 8px 7px 20px;
+  font-size: 11px;
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+.ds-price-num-input:focus {
+  outline: none;
+  border-color: #C83226;
+}
+
+.ds-price-sep {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.ds-price-quick-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.ds-quick-tag {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #9ca3af;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ds-quick-tag:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Ratings */
+.ds-rating-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.ds-rating-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 6px 8px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ds-rating-btn:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.ds-rating-btn.is-active {
+  background: rgba(200, 50, 38, 0.15);
+  border-color: rgba(200, 50, 38, 0.4);
+}
+
+.ds-rating-txt {
+  font-size: 11px;
+  color: #d1d5db;
+}
+
+.ds-rating-clear-btn {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 10px;
+  text-align: left;
+  padding: 4px 8px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Checkboxes */
+.ds-sidebar-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: #d1d5db;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ds-custom-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #C83226;
+  cursor: pointer;
+}
+
+/* =========================================================================
+   BLOCK 3: RIGHT PRODUCTS GRID & INFINITE SCROLL
+   ========================================================================= */
+.ds-shop-products-column {
+  min-height: 400px;
+}
+
+.ds-shop-grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Infinite Scroll Sentinel */
+.ds-infinite-sentinel-box {
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.ds-infinite-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #9ca3af;
+}
+
+.ds-spinner-dot {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #C83226;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: ds-spin 0.8s linear infinite;
+}
+
+@keyframes ds-spin {
+  to { transform: rotate(360deg); }
+}
+
+.ds-infinite-hint {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: #6b7280;
+}
+
+.ds-infinite-end {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* Empty State */
+.ds-shop-empty-state {
+  text-align: center;
+  padding: 5rem 1rem;
+  background: #141518;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+}
+
+.ds-empty-icon {
+  font-size: 3rem;
+  color: #6b7280;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.ds-empty-title {
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.ds-empty-desc {
+  color: #9ca3af;
+  font-size: 13px;
+  margin-bottom: 1.5rem;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Standards Banner */
+.ds-shop-standards-banner {
+  padding: 4rem 0;
+  background: #090a0c;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ds-standards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.ds-standard-number {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #C83226;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.ds-standard-title {
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.ds-standard-desc {
+  font-size: 12px;
+  color: #9ca3af;
+  line-height: 1.6;
+}
