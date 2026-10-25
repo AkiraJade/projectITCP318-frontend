@@ -164,7 +164,7 @@ function App() {
             <Route path="/stories/:slug" element={<StoryDetail />} />
             <Route path="/company" element={<Company />} />
             <Route path="/product/:id" element={<ProductDetails cartItems={state.cartItems} addItemToCart={addItemToCart} />} />
-            <Route path="/search/:keyword" element={<Home />} />
+            <Route path="/search/:keyword" element={<Shop />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/password/forgot" element={<ForgotPassword />} />

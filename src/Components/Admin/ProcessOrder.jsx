@@ -5,7 +5,7 @@ import Loader from '../Layout/Loader';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-import { getAdminConfig } from '../../Utils/helpers';
+import { getAdminConfig, isOrderPaid } from '../../Utils/helpers';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import EmailIcon from '@mui/icons-material/Email';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
@@ -63,7 +63,7 @@ const ProcessOrder = () => {
         getOrderDetails(id);
     }, [id]);
 
-    const isPaid = order?.paymentInfo?.status === 'succeeded' || order?.paymentInfo?.status === 'PAID';
+    const isPaid = isOrderPaid(order?.paymentInfo?.status);
     const shippingInfo = order?.shippingInfo;
     const shippingDetails = shippingInfo
         ? `${shippingInfo.address || ''}, ${shippingInfo.city || ''}, ${shippingInfo.postalCode || ''}, ${shippingInfo.country || ''}`

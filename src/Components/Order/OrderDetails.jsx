@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MetaData from '../Layout/MetaData';
 import Loader from '../Layout/Loader';
-import { getAdminConfig } from '../../Utils/helpers';
+import { getAdminConfig, isOrderPaid } from '../../Utils/helpers';
 import './Orders.css';
 
 const OrderDetails = () => {
@@ -39,7 +39,7 @@ const OrderDetails = () => {
   const { shippingInfo, orderItems, paymentInfo, user, totalPrice, orderStatus, createdAt, itemsPrice, shippingPrice, taxPrice } = order || {};
 
   const orderRef = `#ORD-${String(order?._id || id).slice(-8).toUpperCase()}`;
-  const isPaid = paymentInfo && paymentInfo.status === 'succeeded';
+  const isPaid = isOrderPaid(paymentInfo?.status);
   const dateStr = createdAt
     ? new Date(createdAt).toLocaleDateString('en-US', {
         year: 'numeric',
