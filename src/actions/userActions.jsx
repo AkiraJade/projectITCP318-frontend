@@ -38,18 +38,10 @@ export const register = (userData) => async (dispatch) => {
         };
         const { data } = await axios.post(`${import.meta.env.VITE_API}/register`, userData, config);
 
-        if (data.token && typeof window !== 'undefined') {
-            sessionStorage.setItem('token', JSON.stringify(data.token));
-            localStorage.setItem('token', data.token);
-        }
-        if (data.user && typeof window !== 'undefined') {
-            sessionStorage.setItem('user', JSON.stringify(data.user));
-            localStorage.setItem('user', JSON.stringify(data.user));
-        }
-
+        // Registration now requires email verification — do NOT store token or set auth
         dispatch({
             type: REGISTER_USER_SUCCESS,
-            payload: data.user
+            payload: data.message  // just the success message
         });
     } catch (error) {
         dispatch({
