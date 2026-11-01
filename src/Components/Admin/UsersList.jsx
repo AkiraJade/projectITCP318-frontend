@@ -67,27 +67,30 @@ const UsersList = () => {
       field: 'name',
       headerName: 'Customer Name',
       flex: 1.2,
+      minWidth: 180,
       renderCell: (params) => (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '14px', height: '100%' }}>
           <div
             style={{
-              width: '32px',
-              height: '32px',
-              borderRadius: '2px',
-              background: 'var(--ds-text-primary, #111827)',
-              color: 'var(--ds-bg-base, #ffffff)',
+              width: '36px',
+              height: '36px',
+              minWidth: '36px',
+              borderRadius: '4px',
+              background: '#101828',
+              color: '#ffffff',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '12px',
+              fontSize: '12.5px',
               fontWeight: 700,
               fontFamily: 'var(--ds-font-grotesk, sans-serif)',
-              letterSpacing: '0.04em'
+              letterSpacing: '0.04em',
+              flexShrink: 0
             }}
           >
             {params.value?.[0]?.toUpperCase() || 'U'}
           </div>
-          <strong style={{ color: 'var(--ds-text-primary, #111827)', fontSize: '13px' }}>{params.value}</strong>
+          <strong style={{ color: '#101828', fontSize: '13.5px', fontWeight: 600 }}>{params.value}</strong>
         </div>
       ),
     },
@@ -95,8 +98,9 @@ const UsersList = () => {
       field: 'email',
       headerName: 'Email Address',
       flex: 1.5,
+      minWidth: 200,
       renderCell: (params) => (
-        <span style={{ color: 'var(--ds-text-secondary, #4B5563)', fontSize: '13px' }}>
+        <span style={{ color: '#475467', fontSize: '13px' }}>
           {params.value}
         </span>
       ),
@@ -104,7 +108,9 @@ const UsersList = () => {
     {
       field: 'role',
       headerName: 'Role',
-      width: 130,
+      width: 140,
+      align: 'center',
+      headerAlign: 'center',
       renderCell: (params) => (
         params.value === 'admin' ? (
           <span className="ds-table-badge ds-badge-warning">
@@ -122,13 +128,13 @@ const UsersList = () => {
     {
       field: 'actions',
       headerName: 'Actions',
-      width: 170,
+      width: 190,
       sortable: false,
       filterable: false,
       align: 'right',
       headerAlign: 'right',
       renderCell: (params) => (
-        <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end', width: '100%' }}>
+        <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end', alignItems: 'center', width: '100%', height: '100%' }}>
           <Link
             to={`/admin/user/${params.id}`}
             className="ds-table-action-btn ds-table-btn-edit"
@@ -155,7 +161,7 @@ const UsersList = () => {
   }));
 
   return (
-    <div className="ds-card" style={{ padding: '24px 28px' }}>
+    <div className="ds-card ds-admin-table-card" style={{ padding: '24px 28px' }}>
       <MetaData title="Customers Directory — DOSNOVENTA" />
 
       {/* Header and Sub-Bar */}
@@ -164,14 +170,14 @@ const UsersList = () => {
           <h2 style={{
             fontSize: '18px',
             fontWeight: 700,
-            color: 'var(--ds-text-primary, #111827)',
+            color: '#101828',
             margin: 0,
             fontFamily: 'var(--ds-font-grotesk, sans-serif)',
             letterSpacing: '0.02em'
           }}>
             Registered Riders & Accounts ({allUsers.length})
           </h2>
-          <p style={{ fontSize: '12.5px', color: 'var(--ds-text-muted, #6B7280)', margin: '3px 0 0' }}>
+          <p style={{ fontSize: '12.5px', color: '#667085', margin: '3px 0 0' }}>
             Registered atelier accounts, permissions, and security roles.
           </p>
         </div>
@@ -179,16 +185,8 @@ const UsersList = () => {
         <div style={{ display: 'flex', gap: '12px' }}>
           <Link
             to="/admin/trash"
-            style={{
-              background: '#FFFFFF',
-              border: '1px solid #D1D5DB',
-              color: '#4B5563',
-              padding: '8px 16px',
-              fontSize: '12px',
-              fontWeight: 600,
-              textDecoration: 'none',
-              borderRadius: '6px',
-            }}
+            className="ds-table-action-btn ds-table-btn-edit"
+            style={{ padding: '8px 16px', fontSize: '11.5px', height: '36px' }}
           >
             Trash & Archived
           </Link>
@@ -204,6 +202,8 @@ const UsersList = () => {
           <DataGrid
             rows={rows}
             columns={columns}
+            rowHeight={72}
+            columnHeaderHeight={48}
             pageSizeOptions={[10, 25, 50]}
             initialState={{ pagination: { paginationModel: { pageSize: 10 } } }}
             disableRowSelectionOnClick

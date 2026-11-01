@@ -82,22 +82,24 @@ const OrdersList = () => {
             field: 'id',
             headerName: 'Order Reference',
             flex: 1.2,
+            minWidth: 180,
             renderCell: (params) => (
-                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', lineHeight: '1.3' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', lineHeight: '1.3', height: '100%' }}>
                     <span style={{
                         fontFamily: 'var(--ds-font-grotesk, sans-serif)',
-                        fontSize: '13px',
+                        fontSize: '13.5px',
                         fontWeight: 700,
-                        color: 'var(--ds-text-primary, #111827)',
+                        color: '#101828',
                         letterSpacing: '0.04em'
                     }}>
                         #ORD-{String(params.value).slice(-8).toUpperCase()}
                     </span>
                     <span style={{
                         fontFamily: 'monospace',
-                        fontSize: '10.5px',
-                        color: 'var(--ds-text-muted, #6B7280)',
-                        letterSpacing: '0.02em'
+                        fontSize: '11px',
+                        color: '#667085',
+                        letterSpacing: '0.02em',
+                        marginTop: '2px'
                     }}>
                         {params.value}
                     </span>
@@ -108,11 +110,12 @@ const OrdersList = () => {
             field: 'customer',
             headerName: 'Customer',
             flex: 1,
+            minWidth: 140,
             renderCell: (params) => (
                 <span style={{
-                    fontSize: '13px',
+                    fontSize: '13.5px',
                     fontWeight: 600,
-                    color: 'var(--ds-text-primary, #1F2937)'
+                    color: '#101828'
                 }}>
                     {params.value}
                 </span>
@@ -127,9 +130,10 @@ const OrdersList = () => {
             renderCell: (params) => (
                 <span style={{
                     fontWeight: 600,
-                    color: 'var(--ds-text-secondary, #374151)',
+                    color: '#344054',
                     fontFamily: 'var(--ds-font-grotesk, sans-serif)',
-                    fontVariantNumeric: 'tabular-nums'
+                    fontVariantNumeric: 'tabular-nums',
+                    fontSize: '13px'
                 }}>
                     {params.value}
                 </span>
@@ -144,8 +148,8 @@ const OrdersList = () => {
             renderCell: (params) => (
                 <span style={{
                     fontWeight: 700,
-                    color: 'var(--ds-text-primary, #111827)',
-                    fontSize: '13.5px',
+                    color: '#101828',
+                    fontSize: '14px',
                     fontFamily: 'var(--ds-font-grotesk, sans-serif)',
                     fontVariantNumeric: 'tabular-nums'
                 }}>
@@ -156,7 +160,7 @@ const OrdersList = () => {
         {
             field: 'status',
             headerName: 'Fulfillment Status',
-            width: 170,
+            width: 180,
             align: 'center',
             headerAlign: 'center',
             renderCell: (params) => getStatusChip(params.value)
@@ -164,13 +168,13 @@ const OrdersList = () => {
         {
             field: 'actions',
             headerName: 'Actions',
-            width: 150,
+            width: 210,
             sortable: false,
             filterable: false,
             align: 'right',
             headerAlign: 'right',
             renderCell: (params) => (
-                <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end', width: '100%' }}>
+                <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end', alignItems: 'center', width: '100%', height: '100%' }}>
                     <Link to={`/admin/order/${params.row.rawId}`} className="ds-table-action-btn ds-table-btn-view">
                         <VisibilityIcon style={{ fontSize: '13px' }} />
                         Process
@@ -208,17 +212,17 @@ const OrdersList = () => {
             {/* Header */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
                 <div>
-                    <h2 style={{ fontSize: '18px', fontWeight: 700, color: '#111827', margin: 0 }}>
+                    <h2 style={{ fontSize: '18px', fontWeight: 700, color: '#101828', margin: 0 }}>
                         Orders & Fulfillment
                     </h2>
-                    <p style={{ fontSize: '12.5px', color: '#6B7280', margin: '4px 0 0' }}>
+                    <p style={{ fontSize: '12.5px', color: '#667085', margin: '4px 0 0' }}>
                         Customer orders, build queue progress, and automated PDF delivery logs.
                     </p>
                 </div>
             </div>
 
             {/* Content Card */}
-            <div className="ds-card" style={{ padding: '24px 28px' }}>
+            <div className="ds-card ds-admin-table-card" style={{ padding: '24px 28px' }}>
                 {loading ? (
                     <Loader />
                 ) : allOrders.length > 0 ? (
@@ -226,6 +230,8 @@ const OrdersList = () => {
                         <DataGrid
                             rows={rows}
                             columns={columns}
+                            rowHeight={72}
+                            columnHeaderHeight={48}
                             pageSizeOptions={[10, 25, 50]}
                             initialState={{ pagination: { paginationModel: { pageSize: 10 } } }}
                             disableSelectionOnClick

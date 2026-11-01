@@ -883,300 +883,357 @@
   transform: none;
 }
 
-/* 10. Modern Architectural Data Table Styling (MUI DataGrid Polish) */
-.ds-datagrid-container {
-  width: 100%;
-  background-color: var(--ds-bg-surface, #ffffff);
-  border-radius: 0;
-  overflow: hidden;
-  transition: background-color var(--ds-transition-fast, 0.18s ease);
+/* 10. Modern Architectural Data Table Styling (Clean Light Workstation in Both Light & Dark Modes) */
+.ds-admin-table-card,
+html[data-theme='dark'] .ds-admin-table-card {
+  background-color: #ffffff !important;
+  border: 1px solid #e4e7ec !important;
+  border-radius: 8px !important;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.05), 0 1px 2px rgba(16, 24, 40, 0.03) !important;
+  color: #101828 !important;
 }
 
-.ds-datagrid-container .MuiDataGrid-root {
-  border: 1px solid var(--ds-border-light, #eaecf0) !important;
-  border-radius: 0 !important;
-  color: var(--ds-text-primary, #111827) !important;
+.ds-admin-table-card h2,
+html[data-theme='dark'] .ds-admin-table-card h2 {
+  color: #101828 !important;
+}
+
+.ds-admin-table-card p,
+html[data-theme='dark'] .ds-admin-table-card p {
+  color: #667085 !important;
+}
+
+/* Datagrid Container - Always White / Crisp Light Surface */
+.ds-datagrid-container,
+html[data-theme='dark'] .ds-datagrid-container {
+  width: 100%;
+  background-color: #ffffff !important;
+  border-radius: 6px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.ds-datagrid-container .MuiDataGrid-root,
+html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-root {
+  border: 1px solid #eaecf0 !important;
+  border-radius: 6px !important;
+  color: #101828 !important;
   font-family: var(--ds-font-body, 'Inter', sans-serif) !important;
-  background-color: var(--ds-bg-surface, #ffffff) !important;
+  background-color: #ffffff !important;
   font-size: 13px !important;
 }
 
-.ds-datagrid-container .MuiDataGrid-columnHeaders {
-  background-color: var(--ds-bg-surface-elevated, #f8f9fa) !important;
-  border-bottom: 1.5px solid var(--ds-border-light, #eaecf0) !important;
-  color: var(--ds-text-secondary, #374151) !important;
+.ds-datagrid-container .MuiDataGrid-main,
+html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-main,
+.ds-datagrid-container .MuiDataGrid-virtualScroller,
+html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-virtualScroller,
+.ds-datagrid-container .MuiDataGrid-virtualScrollerContent,
+html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-virtualScrollerContent {
+  background-color: #ffffff !important;
+}
+
+.ds-datagrid-container .MuiDataGrid-cell strong,
+html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-cell strong {
+  color: #101828 !important;
+}
+
+/* Column Headers */
+.ds-datagrid-container .MuiDataGrid-columnHeaders,
+html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-columnHeaders {
+  background-color: #f8f9fa !important;
+  border-bottom: 1.5px solid #eaecf0 !important;
+  color: #475467 !important;
   font-family: var(--ds-font-grotesk, 'Space Grotesk', sans-serif) !important;
   font-size: 11px !important;
   font-weight: 700 !important;
-  letter-spacing: 0.12em !important;
+  letter-spacing: 0.1em !important;
   text-transform: uppercase !important;
   min-height: 48px !important;
+  max-height: 48px !important;
+  height: 48px !important;
 }
 
-.ds-datagrid-container .MuiDataGrid-columnHeaderTitle {
+.ds-datagrid-container .MuiDataGrid-columnHeaderTitle,
+html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-columnHeaderTitle {
   font-weight: 700 !important;
   font-family: var(--ds-font-grotesk, 'Space Grotesk', sans-serif) !important;
-  letter-spacing: 0.12em !important;
-  color: var(--ds-text-secondary, #374151) !important;
+  letter-spacing: 0.1em !important;
+  color: #475467 !important;
 }
 
-.ds-datagrid-container .MuiDataGrid-cell {
-  border-bottom: 1px solid var(--ds-border-light, #f2f4f7) !important;
+.ds-datagrid-container .MuiDataGrid-columnHeaderTitleContainer {
+  padding: 0 !important;
+}
+
+/* Product Rows & Exact Height Synchronization */
+.ds-datagrid-container .MuiDataGrid-row,
+html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-row {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #f2f4f7 !important;
+  box-sizing: border-box !important;
+  transition: background-color 0.15s ease !important;
+}
+
+.ds-datagrid-container .MuiDataGrid-row:hover,
+html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-row:hover {
+  background-color: #f8fafc !important;
+}
+
+.ds-datagrid-container .MuiDataGrid-row.Mui-selected,
+html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-row.Mui-selected {
+  background-color: #fff1f0 !important;
+}
+
+.ds-datagrid-container .MuiDataGrid-row.Mui-selected:hover,
+html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-row.Mui-selected:hover {
+  background-color: #fee4e2 !important;
+}
+
+/* Cells */
+.ds-datagrid-container .MuiDataGrid-cell,
+html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-cell {
+  border-bottom: 1px solid #f2f4f7 !important;
   display: flex !important;
   align-items: center !important;
-  color: var(--ds-text-primary, #111827) !important;
-  padding: 12px 18px !important;
+  color: #101828 !important;
+  padding: 0 16px !important;
   font-size: 13px !important;
+  box-sizing: border-box !important;
 }
 
-.ds-datagrid-container .MuiDataGrid-row {
-  min-height: 60px !important;
-  background-color: var(--ds-bg-surface, #ffffff) !important;
-  transition: background-color var(--ds-transition-fast, 0.15s ease) !important;
+.ds-datagrid-container .MuiDataGrid-cell:focus,
+.ds-datagrid-container .MuiDataGrid-cell:focus-within {
+  outline: none !important;
 }
 
-.ds-datagrid-container .MuiDataGrid-row:hover {
-  background-color: var(--ds-bg-surface-elevated, #f8fafc) !important;
-}
-
-.ds-datagrid-container .MuiDataGrid-row.Mui-selected {
-  background-color: rgba(200, 50, 38, 0.05) !important;
-}
-
-.ds-datagrid-container .MuiDataGrid-row.Mui-selected:hover {
-  background-color: rgba(200, 50, 38, 0.09) !important;
-}
-
-.ds-datagrid-container .MuiDataGrid-footerContainer {
-  border-top: 1px solid var(--ds-border-light, #eaecf0) !important;
-  background-color: var(--ds-bg-surface-elevated, #f8f9fa) !important;
-  color: var(--ds-text-secondary, #4b5563) !important;
+/* Footer & Pagination */
+.ds-datagrid-container .MuiDataGrid-footerContainer,
+html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-footerContainer {
+  border-top: 1px solid #eaecf0 !important;
+  background-color: #f8f9fa !important;
+  color: #475467 !important;
   font-size: 12px !important;
   min-height: 52px !important;
+  max-height: 52px !important;
+  height: 52px !important;
 }
 
-.ds-datagrid-container .MuiTablePagination-root {
-  color: var(--ds-text-secondary, #374151) !important;
+.ds-datagrid-container .MuiTablePagination-root,
+html[data-theme='dark'] .ds-datagrid-container .MuiTablePagination-root {
+  color: #475467 !important;
   font-family: var(--ds-font-grotesk, 'Space Grotesk', sans-serif) !important;
   font-size: 12px !important;
+}
+
+.ds-datagrid-container .MuiTablePagination-select,
+html[data-theme='dark'] .ds-datagrid-container .MuiTablePagination-select {
+  color: #101828 !important;
+  font-weight: 600 !important;
+}
+
+.ds-datagrid-container .MuiTablePagination-selectIcon,
+html[data-theme='dark'] .ds-datagrid-container .MuiTablePagination-selectIcon {
+  color: #667085 !important;
 }
 
 .ds-datagrid-container .MuiTablePagination-selectLabel,
-.ds-datagrid-container .MuiTablePagination-displayedRows {
+.ds-datagrid-container .MuiTablePagination-displayedRows,
+html[data-theme='dark'] .ds-datagrid-container .MuiTablePagination-selectLabel,
+html[data-theme='dark'] .ds-datagrid-container .MuiTablePagination-displayedRows {
   font-family: var(--ds-font-grotesk, 'Space Grotesk', sans-serif) !important;
-  letter-spacing: 0.04em !important;
+  letter-spacing: 0.02em !important;
+  color: #475467 !important;
+  font-size: 12px !important;
 }
 
-.ds-datagrid-container .MuiCheckbox-root {
-  color: var(--ds-text-muted, #9ca3af) !important;
+.ds-datagrid-container .MuiTablePagination-actions button,
+html[data-theme='dark'] .ds-datagrid-container .MuiTablePagination-actions button {
+  color: #475467 !important;
+}
+
+.ds-datagrid-container .MuiTablePagination-actions button:hover,
+html[data-theme='dark'] .ds-datagrid-container .MuiTablePagination-actions button:hover {
+  background-color: #eaecf0 !important;
+}
+
+.ds-datagrid-container .MuiTablePagination-actions button.Mui-disabled,
+html[data-theme='dark'] .ds-datagrid-container .MuiTablePagination-actions button.Mui-disabled {
+  color: #d0d5dd !important;
+}
+
+/* Checkbox */
+.ds-datagrid-container .MuiCheckbox-root,
+html[data-theme='dark'] .ds-datagrid-container .MuiCheckbox-root {
+  color: #98a2b3 !important;
   padding: 6px !important;
 }
 
-.ds-datagrid-container .MuiCheckbox-root.Mui-checked {
-  color: var(--ds-accent-red, #c83226) !important;
-}
-
-.ds-datagrid-container .MuiDataGrid-iconSeparator {
-  color: var(--ds-border-light, #eaecf0) !important;
-}
-
-/* Dark Mode Overrides for DataGrid */
-html[data-theme='dark'] .ds-datagrid-container {
-  background-color: #121417;
-}
-
-html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-root {
-  border-color: rgba(246, 245, 241, 0.08) !important;
-  background-color: #121417 !important;
-  color: #f6f5f1 !important;
-}
-
-html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-columnHeaders {
-  background-color: #16181d !important;
-  border-bottom-color: rgba(246, 245, 241, 0.08) !important;
-  color: #9ea3ac !important;
-}
-
-html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-columnHeaderTitle {
-  color: #9ea3ac !important;
-}
-
-html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-cell {
-  border-bottom-color: rgba(246, 245, 241, 0.06) !important;
-  color: #f6f5f1 !important;
-}
-
-html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-row {
-  background-color: #121417 !important;
-}
-
-html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-row:hover {
-  background-color: #1a1c21 !important;
-}
-
-html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-row.Mui-selected {
-  background-color: rgba(217, 45, 32, 0.15) !important;
-}
-
-html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-row.Mui-selected:hover {
-  background-color: rgba(217, 45, 32, 0.22) !important;
-}
-
-html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-footerContainer {
-  background-color: #16181d !important;
-  border-top-color: rgba(246, 245, 241, 0.08) !important;
-  color: #9ea3ac !important;
-}
-
-html[data-theme='dark'] .ds-datagrid-container .MuiTablePagination-root {
-  color: #9ea3ac !important;
-}
-
-html[data-theme='dark'] .ds-datagrid-container .MuiCheckbox-root {
-  color: #4b5563 !important;
-}
-
+.ds-datagrid-container .MuiCheckbox-root.Mui-checked,
 html[data-theme='dark'] .ds-datagrid-container .MuiCheckbox-root.Mui-checked {
-  color: #d92d20 !important;
+  color: #c83226 !important;
 }
 
+.ds-datagrid-container .MuiDataGrid-iconSeparator,
 html[data-theme='dark'] .ds-datagrid-container .MuiDataGrid-iconSeparator {
-  color: rgba(246, 245, 241, 0.08) !important;
+  color: #eaecf0 !important;
 }
 
-/* Polished Action Buttons in DataTables */
-.ds-table-action-btn {
+/* Polished Action Buttons in DataTables (Consistent in Light & Dark Modes) */
+.ds-table-action-btn,
+html[data-theme='dark'] .ds-table-action-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 6px;
   padding: 6px 14px;
-  border-radius: 2px;
+  height: 32px;
+  border-radius: 4px;
   font-family: var(--ds-font-grotesk, 'Space Grotesk', sans-serif);
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none !important;
   cursor: pointer;
-  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.15s ease;
   line-height: 1;
+  box-sizing: border-box;
 }
 
-.ds-table-btn-edit {
-  background-color: transparent;
-  border: 1px solid var(--ds-border-active, #d1d5db);
-  color: var(--ds-text-primary, #111827);
+.ds-table-btn-edit,
+html[data-theme='dark'] .ds-table-btn-edit {
+  background-color: #ffffff !important;
+  border: 1px solid #d0d5dd !important;
+  color: #344054 !important;
 }
 
-.ds-table-btn-edit:hover {
-  background-color: var(--ds-text-primary, #111827);
-  border-color: var(--ds-text-primary, #111827);
-  color: var(--ds-bg-base, #ffffff) !important;
-  transform: translateY(-1px);
-}
-
-.ds-table-btn-trash {
-  background-color: transparent;
-  border: 1px solid rgba(200, 50, 38, 0.35);
-  color: var(--ds-accent-red, #c83226);
-}
-
-.ds-table-btn-trash:hover {
-  background-color: var(--ds-accent-red, #c83226);
-  border-color: var(--ds-accent-red, #c83226);
+.ds-table-btn-edit:hover,
+html[data-theme='dark'] .ds-table-btn-edit:hover {
+  background-color: #101828 !important;
+  border-color: #101828 !important;
   color: #ffffff !important;
-  transform: translateY(-1px);
 }
 
-.ds-table-btn-view {
-  background-color: transparent;
-  border: 1px solid rgba(37, 99, 235, 0.35);
-  color: var(--ds-accent-blue, #2563eb);
+.ds-table-btn-trash,
+html[data-theme='dark'] .ds-table-btn-trash {
+  background-color: #ffffff !important;
+  border: 1px solid #fecdca !important;
+  color: #b42318 !important;
 }
 
-.ds-table-btn-view:hover {
-  background-color: var(--ds-accent-blue, #2563eb);
-  border-color: var(--ds-accent-blue, #2563eb);
+.ds-table-btn-trash:hover,
+html[data-theme='dark'] .ds-table-btn-trash:hover {
+  background-color: #d92d20 !important;
+  border-color: #d92d20 !important;
   color: #ffffff !important;
-  transform: translateY(-1px);
 }
 
-.ds-table-btn-restore {
-  background-color: transparent;
-  border: 1px solid rgba(16, 185, 129, 0.35);
-  color: #10b981;
+.ds-table-btn-view,
+html[data-theme='dark'] .ds-table-btn-view {
+  background-color: #ffffff !important;
+  border: 1px solid #bfdbfe !important;
+  color: #1d4ed8 !important;
 }
 
-.ds-table-btn-restore:hover {
-  background-color: #10b981;
-  border-color: #10b981;
+.ds-table-btn-view:hover,
+html[data-theme='dark'] .ds-table-btn-view:hover {
+  background-color: #1d4ed8 !important;
+  border-color: #1d4ed8 !important;
   color: #ffffff !important;
-  transform: translateY(-1px);
+}
+
+.ds-table-btn-restore,
+html[data-theme='dark'] .ds-table-btn-restore {
+  background-color: #ffffff !important;
+  border: 1px solid #a7f3d0 !important;
+  color: #047857 !important;
+}
+
+.ds-table-btn-restore:hover,
+html[data-theme='dark'] .ds-table-btn-restore:hover {
+  background-color: #047857 !important;
+  border-color: #047857 !important;
+  color: #ffffff !important;
 }
 
 /* Polished Table Status Badges */
-.ds-table-badge {
+.ds-table-badge,
+html[data-theme='dark'] .ds-table-badge {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   padding: 4px 10px;
-  border-radius: 2px;
+  border-radius: 4px;
   font-family: var(--ds-font-grotesk, 'Space Grotesk', sans-serif);
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   line-height: 1.2;
 }
 
-.ds-table-badge-dot {
-  width: 5px;
-  height: 5px;
+.ds-table-badge-dot,
+html[data-theme='dark'] .ds-table-badge-dot {
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   display: inline-block;
+  flex-shrink: 0;
 }
 
-.ds-badge-success {
-  background-color: rgba(16, 185, 129, 0.1);
-  color: #059669;
-  border: 1px solid rgba(16, 185, 129, 0.25);
+.ds-badge-success,
+html[data-theme='dark'] .ds-badge-success {
+  background-color: #ecfdf3 !important;
+  color: #027a48 !important;
+  border: 1px solid #abefc6 !important;
 }
-.ds-badge-success .ds-table-badge-dot {
-  background-color: #10b981;
-}
-
-.ds-badge-warning {
-  background-color: rgba(245, 158, 11, 0.1);
-  color: #d97706;
-  border: 1px solid rgba(245, 158, 11, 0.25);
-}
-.ds-badge-warning .ds-table-badge-dot {
-  background-color: #f59e0b;
+.ds-badge-success .ds-table-badge-dot,
+html[data-theme='dark'] .ds-badge-success .ds-table-badge-dot {
+  background-color: #12b76a !important;
 }
 
-.ds-badge-info {
-  background-color: rgba(37, 99, 235, 0.1);
-  color: #2563eb;
-  border: 1px solid rgba(37, 99, 235, 0.25);
+.ds-badge-warning,
+html[data-theme='dark'] .ds-badge-warning {
+  background-color: #fffbeb !important;
+  color: #b54708 !important;
+  border: 1px solid #fedf89 !important;
 }
-.ds-badge-info .ds-table-badge-dot {
-  background-color: #2563eb;
-}
-
-.ds-badge-danger {
-  background-color: rgba(239, 68, 68, 0.1);
-  color: #dc2626;
-  border: 1px solid rgba(239, 68, 68, 0.25);
-}
-.ds-badge-danger .ds-table-badge-dot {
-  background-color: #ef4444;
+.ds-badge-warning .ds-table-badge-dot,
+html[data-theme='dark'] .ds-badge-warning .ds-table-badge-dot {
+  background-color: #f79009 !important;
 }
 
-.ds-badge-neutral {
-  background-color: rgba(107, 114, 128, 0.1);
-  color: #6b7280;
-  border: 1px solid rgba(107, 114, 128, 0.25);
+.ds-badge-info,
+html[data-theme='dark'] .ds-badge-info {
+  background-color: #eff8ff !important;
+  color: #175cd3 !important;
+  border: 1px solid #b2ddff !important;
+}
+.ds-badge-info .ds-table-badge-dot,
+html[data-theme='dark'] .ds-badge-info .ds-table-badge-dot {
+  background-color: #2e90fa !important;
+}
+
+.ds-badge-danger,
+html[data-theme='dark'] .ds-badge-danger {
+  background-color: #fef3f2 !important;
+  color: #b42318 !important;
+  border: 1px solid #fecdca !important;
+}
+.ds-badge-danger .ds-table-badge-dot,
+html[data-theme='dark'] .ds-badge-danger .ds-table-badge-dot {
+  background-color: #f04438 !important;
+}
+
+.ds-badge-neutral,
+html[data-theme='dark'] .ds-badge-neutral {
+  background-color: #f8f9fa !important;
+  color: #475467 !important;
+  border: 1px solid #eaecf0 !important;
+}
+.ds-badge-neutral .ds-table-badge-dot,
+html[data-theme='dark'] .ds-badge-neutral .ds-table-badge-dot {
+  background-color: #667085 !important;
 }
 .ds-badge-neutral .ds-table-badge-dot {
   background-color: #6b7280;

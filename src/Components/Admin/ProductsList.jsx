@@ -94,52 +94,91 @@ const ProductsList = () => {
       field: 'product',
       headerName: 'Product',
       flex: 2,
+      minWidth: 260,
       renderCell: (params) => (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-          {params.row.image ? (
-            <img
-              src={params.row.image}
-              alt={params.row.name}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '14px',
+          width: '100%',
+          minWidth: 0,
+          height: '100%'
+        }}>
+          <div style={{
+            width: '46px',
+            height: '46px',
+            minWidth: '46px',
+            borderRadius: '4px',
+            overflow: 'hidden',
+            backgroundColor: '#f8f9fa',
+            border: '1px solid #e5e7eb',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0
+          }}>
+            {params.row.image ? (
+              <img
+                src={params.row.image}
+                alt={params.row.name}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  display: 'block'
+                }}
+                onError={(e) => { e.target.style.display = 'none'; }}
+              />
+            ) : (
+              <span style={{
+                fontSize: '9px',
+                fontWeight: 700,
+                color: '#98a2b3',
+                letterSpacing: '0.05em',
+                fontFamily: 'var(--ds-font-grotesk, sans-serif)'
+              }}>
+                NO IMG
+              </span>
+            )}
+          </div>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            minWidth: 0,
+            overflow: 'hidden',
+            lineHeight: 1.3
+          }}>
+            <span
               style={{
-                width: '44px',
-                height: '38px',
-                objectFit: 'cover',
-                borderRadius: '0px',
-                background: 'var(--ds-bg-surface-elevated, #f3f4f6)',
-                border: '1px solid var(--ds-border-light, #e5e7eb)'
+                fontWeight: 600,
+                color: '#101828',
+                fontSize: '13.5px',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                display: 'block'
               }}
-              onError={(e) => { e.target.style.display = 'none'; }}
-            />
-          ) : (
-            <div style={{
-              width: '44px',
-              height: '38px',
-              borderRadius: '0px',
-              background: 'var(--ds-bg-surface-elevated, #f3f4f6)',
-              border: '1px solid var(--ds-border-light, #e5e7eb)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'var(--ds-text-muted, #9ca3af)',
-              fontSize: '10px',
-              fontFamily: 'var(--ds-font-grotesk, sans-serif)',
-              letterSpacing: '0.05em'
-            }}>
-              NO IMG
-            </div>
-          )}
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <span style={{ fontWeight: 600, color: 'var(--ds-text-primary, #111827)', fontSize: '13.5px' }}>
+              title={params.row.name}
+            >
               {params.row.name}
             </span>
-            <span style={{
-              fontSize: '11px',
-              color: 'var(--ds-text-muted, #6b7280)',
-              textTransform: 'uppercase',
-              letterSpacing: '0.12em',
-              fontFamily: 'var(--ds-font-grotesk, sans-serif)'
-            }}>
-              {params.row.category}
+            <span
+              style={{
+                fontSize: '11px',
+                fontWeight: 600,
+                color: '#667085',
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                fontFamily: 'var(--ds-font-grotesk, sans-serif)',
+                marginTop: '3px',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                display: 'block'
+              }}
+            >
+              {params.row.category || 'General'}
             </span>
           </div>
         </div>
@@ -156,8 +195,8 @@ const ProductsList = () => {
           fontFamily: 'var(--ds-font-grotesk, sans-serif)',
           fontVariantNumeric: 'tabular-nums',
           fontWeight: 700,
-          color: 'var(--ds-text-primary, #111827)',
-          fontSize: '13.5px'
+          color: '#101828',
+          fontSize: '14px'
         }}>
           {params.value}
         </span>
@@ -193,7 +232,7 @@ const ProductsList = () => {
       align: 'right',
       headerAlign: 'right',
       renderCell: (params) => (
-        <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end', width: '100%' }}>
+        <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end', alignItems: 'center', width: '100%', height: '100%' }}>
           <Link
             to={`/admin/product/${params.id}`}
             className="ds-table-action-btn ds-table-btn-edit"
@@ -223,7 +262,7 @@ const ProductsList = () => {
   }));
 
   return (
-    <div className="ds-card" style={{ padding: '24px 28px' }}>
+    <div className="ds-card ds-admin-table-card" style={{ padding: '24px 28px' }}>
       <MetaData title="Products Catalog — DOSNOVENTA" />
 
       {/* Top Controls Bar */}
@@ -232,14 +271,14 @@ const ProductsList = () => {
           <h2 style={{
             fontSize: '18px',
             fontWeight: 700,
-            color: 'var(--ds-text-primary, #111827)',
+            color: '#101828',
             margin: 0,
             fontFamily: 'var(--ds-font-grotesk, sans-serif)',
             letterSpacing: '0.02em'
           }}>
             Products Inventory ({products.length})
           </h2>
-          <p style={{ fontSize: '12.5px', color: 'var(--ds-text-muted, #6B7280)', margin: '3px 0 0' }}>
+          <p style={{ fontSize: '12.5px', color: '#667085', margin: '3px 0 0' }}>
             Manage catalog specifications, pricing, inventory stock, and atelier items.
           </p>
         </div>
@@ -248,24 +287,25 @@ const ProductsList = () => {
           <Link
             to="/admin/trash"
             className="ds-table-action-btn ds-table-btn-edit"
-            style={{ padding: '8px 16px', fontSize: '11.5px' }}
+            style={{ padding: '8px 16px', fontSize: '11.5px', height: '36px' }}
           >
             View Trash
           </Link>
           <Link
             to="/admin/product"
             style={{
-              background: 'var(--ds-accent-red, #C83226)',
-              border: '1px solid var(--ds-accent-red, #C83226)',
+              background: '#C83226',
+              border: '1px solid #C83226',
               color: '#FFFFFF',
-              padding: '8px 18px',
+              padding: '0 18px',
+              height: '36px',
               fontSize: '11.5px',
               fontWeight: 600,
               fontFamily: 'var(--ds-font-grotesk, sans-serif)',
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
               textDecoration: 'none',
-              borderRadius: '2px',
+              borderRadius: '4px',
               display: 'inline-flex',
               alignItems: 'center',
               gap: '6px',
@@ -306,6 +346,8 @@ const ProductsList = () => {
             <DataGrid
               rows={rows}
               columns={columns}
+              rowHeight={72}
+              columnHeaderHeight={48}
               pageSizeOptions={[10, 25, 50]}
               initialState={{ pagination: { paginationModel: { pageSize: 10 } } }}
               checkboxSelection
