@@ -103,8 +103,8 @@
 .ds-nav-item:hover,
 .ds-nav-item:focus-visible {
   color: var(--ds-text-primary);
-  border-color: rgba(246, 245, 241, 0.18);
-  background: rgba(246, 245, 241, 0.03);
+  border-color: var(--ds-border-active);
+  background: var(--ds-bg-subtle);
 }
 
 .ds-nav-item:hover .ds-nav-index,
@@ -136,7 +136,7 @@
 .ds-nav-auth:hover,
 .ds-nav-auth:focus-visible {
   color: var(--ds-text-primary);
-  border-color: rgba(246, 245, 241, 0.2);
+  border-color: var(--ds-border-active);
 }
 
 .ds-nav-cart {
@@ -150,8 +150,8 @@
   align-items: center;
   gap: 0.35rem;
   padding: 0.35rem 0.75rem;
-  border: 1px solid rgba(246, 245, 241, 0.15);
-  background: rgba(18, 20, 23, 0.4);
+  border: 1px solid var(--ds-border-active);
+  background: var(--ds-bg-surface-elevated);
   transition: all var(--ds-transition-fast);
   outline: none;
 }
@@ -159,7 +159,7 @@
 .ds-nav-cart:hover,
 .ds-nav-cart:focus-visible {
   border-color: var(--ds-text-primary);
-  background: rgba(246, 245, 241, 0.08);
+  background: var(--ds-bg-subtle);
 }
 
 .ds-cart-divider {

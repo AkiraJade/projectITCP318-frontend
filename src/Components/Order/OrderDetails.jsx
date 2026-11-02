@@ -100,7 +100,7 @@ const OrderDetails = () => {
                   <h3 className="ds-dossier-heading">DISPATCHED PRODUCTS & SPECIFICATIONS</h3>
                   <div className="ds-order-items-preview">
                     {(orderItems || []).map((item, idx) => (
-                      <div key={idx} className="ds-preview-item" style={{ padding: '12px 0', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                      <div key={idx} className="ds-preview-item" style={{ padding: '12px 0', borderBottom: '1px solid var(--ds-border-light)' }}>
                         <div className="ds-preview-left">
                           {item.image && (
                             <img
@@ -137,7 +137,7 @@ const OrderDetails = () => {
                 <Link
                   to="/orders/me"
                   style={{
-                    color: 'rgba(255,255,255,0.6)',
+                    color: 'var(--ds-text-secondary)',
                     textDecoration: 'none',
                     fontFamily: 'monospace',
                     fontSize: '12px',
@@ -209,14 +209,14 @@ const OrderDetails = () => {
                   <div
                     className="ds-dossier-row"
                     style={{
-                      borderTop: '1px solid rgba(255,255,255,0.15)',
+                      borderTop: '1px solid var(--ds-border-active)',
                       paddingTop: '12px',
                       marginTop: '8px',
                       fontSize: '1rem',
                     }}
                   >
-                    <strong style={{ letterSpacing: '1px', fontFamily: 'monospace' }}>GRAND TOTAL:</strong>
-                    <strong style={{ color: '#fff', fontSize: '1.25rem', fontFamily: 'monospace' }}>
+                    <strong style={{ letterSpacing: '1px', fontFamily: 'monospace', color: 'var(--ds-text-primary)' }}>GRAND TOTAL:</strong>
+                    <strong style={{ color: 'var(--ds-text-primary)', fontSize: '1.25rem', fontFamily: 'monospace' }}>
                       ${Number(totalPrice || 0).toFixed(2)}
                     </strong>
                   </div>
