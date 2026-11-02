@@ -48,6 +48,7 @@ const Navbar = ({ cartItems = [] }) => {
   };
 
   const cartCount = cartItems ? cartItems.length : 0;
+  const isHeroPage = location.pathname === '/' || location.pathname === '/stories' || location.pathname === '/company' || location.pathname.startsWith('/stories/');
 
   return (
     <>

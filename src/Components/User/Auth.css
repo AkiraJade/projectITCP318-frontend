@@ -304,3 +304,13 @@
     letter-spacing: 0.3px;
     font-family: var(--ds-font-grotesk, sans-serif);
 }
+
+
+/* Ensure text over photography in auth photo column always stays white */
+.ds-auth-photo-overlay .editorial-label {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.ds-auth-photo-heading {
+  color: #ffffff !important;
+}
