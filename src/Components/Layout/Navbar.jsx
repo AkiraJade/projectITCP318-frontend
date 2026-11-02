@@ -48,11 +48,11 @@ const Navbar = ({ cartItems = [] }) => {
   };
 
   const cartCount = cartItems ? cartItems.length : 0;
-  const isHeroPage = location.pathname === '/' || location.pathname === '/stories' || location.pathname === '/company' || location.pathname.startsWith('/stories/');
+  const isHeroPage = location.pathname === '/' || location.pathname === '/shop' || location.pathname === '/stories' || location.pathname === '/company' || location.pathname.startsWith('/stories/');
 
   return (
     <>
-      <header className={`ds-navbar ${scrolled ? 'ds-navbar-scrolled' : ''}`}>
+      <header className={`ds-navbar ${scrolled ? 'ds-navbar-scrolled' : ''} ${isHeroPage && !scrolled ? 'ds-navbar-over-hero' : ''}`}>
         <div className="ds-navbar-container">
           {/* LEFT: DOSNOVENTA wordmark */}
           <div className="ds-navbar-brand">
