@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MetaData from '../Layout/MetaData';
 import Loader from '../Layout/Loader';
 import { getAdminConfig } from '../../Utils/helpers';
+import { exportToCsv } from '../../Utils/exportCsv';
 import axios from 'axios';
 import {
   ResponsiveContainer,
@@ -78,6 +79,25 @@ const Analytics = () => {
   useEffect(() => {
     fetchRangeSales(selectedRange);
   }, [selectedRange]);
+
+  const handleExportSalesCSV = () => {
+    const exportColumns = [
+      { label: 'Date', key: 'date' },
+      { label: 'Orders Placed', key: (d) => Number(d.orders || 0) },
+      { label: 'Total Revenue ($)', key: (d) => Number(d.total || 0).toFixed(2) },
+    ];
+    exportToCsv(`sales_revenue_trends_${selectedRange.toLowerCase()}`, exportColumns, salesData);
+  };
+
+  const handleExportCustomersCSV = () => {
+    const exportColumns = [
+      { label: 'Customer ID', key: '_id' },
+      { label: 'Customer Name', key: (c) => c.userDetails?.name || 'Rider' },
+      { label: 'Customer Email', key: (c) => c.userDetails?.email || '' },
+      { label: 'Lifetime Value ($)', key: (c) => Number(c.total || 0).toFixed(2) },
+    ];
+    exportToCsv('top_customers_lifetime_value', exportColumns, customerSales);
+  };
 
   if (loading) {
     return <Loader />;
@@ -209,6 +229,36 @@ const Analytics = () => {
                 </button>
               ))}
             </div>
+
+            {/* Print CSV Button */}
+            <button
+              type="button"
+              onClick={handleExportSalesCSV}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                background: '#0D0E10',
+                border: '1px solid #282A2E',
+                color: '#F9FAFB',
+                padding: '5px 14px',
+                borderRadius: '6px',
+                fontSize: '11px',
+                fontWeight: 600,
+                cursor: 'pointer',
+                fontFamily: 'var(--ds-font-grotesk, sans-serif)',
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase'
+              }}
+              title="Export sales timeline as CSV"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Print CSV
+            </button>
           </div>
         </div>
 
@@ -289,9 +339,39 @@ const Analytics = () => {
           borderRadius: '8px',
           padding: '24px'
         }}>
-          <h2 style={{ fontSize: '16px', fontWeight: 700, color: '#F9FAFB', margin: '0 0 16px 0' }}>
-            TOP RIDERS BY LIFETIME VALUE
-          </h2>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '12px' }}>
+            <h2 style={{ fontSize: '16px', fontWeight: 700, color: '#F9FAFB', margin: 0 }}>
+              TOP RIDERS BY LIFETIME VALUE
+            </h2>
+            <button
+              type="button"
+              onClick={handleExportCustomersCSV}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                background: '#0D0E10',
+                border: '1px solid #282A2E',
+                color: '#F9FAFB',
+                padding: '5px 14px',
+                borderRadius: '6px',
+                fontSize: '11px',
+                fontWeight: 600,
+                cursor: 'pointer',
+                fontFamily: 'var(--ds-font-grotesk, sans-serif)',
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase'
+              }}
+              title="Export top riders by lifetime value as CSV"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Print CSV
+            </button>
+          </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '12px' }}>
             {customerSales.slice(0, 6).map((cs, idx) => (
               <div

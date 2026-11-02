@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import MetaData from '../Layout/MetaData';
 import Loader from '../Layout/Loader';
 import { getToken, getAdminConfig } from '../../Utils/helpers';
+import { exportToCsv } from '../../Utils/exportCsv';
 import axios from 'axios';
 import { DataGrid } from '@mui/x-data-grid';
 import { Rating, Box, Typography, Button, TextField } from '@mui/material';
@@ -157,6 +158,19 @@ const ProductReviews = () => {
         comment: review.comment
     }));
 
+    const handleExportCSV = () => {
+        const exportColumns = [
+            { label: 'Review ID', key: '_id' },
+            { label: 'Product ID', key: () => targetProduct?._id || searchedId },
+            { label: 'Product Name', key: () => targetProduct?.name || 'Product' },
+            { label: 'Customer Name', key: (r) => r.name || 'Anonymous Rider' },
+            { label: 'Rating', key: 'rating' },
+            { label: 'Comment', key: 'comment' },
+            { label: 'Review Date', key: (r) => r.createdAt ? new Date(r.createdAt).toLocaleString() : '' },
+        ];
+        exportToCsv(`reviews_${targetProduct?.name || searchedId || 'product'}`, exportColumns, listReviews);
+    };
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             <MetaData title="Product Reviews Audit — DOSNOVENTA" />
@@ -172,7 +186,38 @@ const ProductReviews = () => {
                     </p>
                 </div>
 
-                <div style={{ display: 'flex', gap: '10px' }}>
+                <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
+                    {listReviews.length > 0 && (
+                        <button
+                            type="button"
+                            onClick={handleExportCSV}
+                            style={{
+                                padding: '0 14px',
+                                height: '36px',
+                                fontSize: '11.5px',
+                                fontWeight: 600,
+                                fontFamily: 'var(--ds-font-grotesk, sans-serif)',
+                                letterSpacing: '0.06em',
+                                textTransform: 'uppercase',
+                                borderRadius: '4px',
+                                background: '#FFFFFF',
+                                border: '1px solid #D0D5DD',
+                                color: '#344054',
+                                cursor: 'pointer',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '6px'
+                            }}
+                            title="Export reviews list as CSV"
+                        >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="7 10 12 15 17 10" />
+                                <line x1="12" y1="15" x2="12" y2="3" />
+                            </svg>
+                            Print CSV
+                        </button>
+                    )}
                     <Link to="/admin/trash" className="ds-table-action-btn ds-table-btn-edit" style={{ padding: '8px 16px', fontSize: '11.5px', height: '36px' }}>
                         <DeleteSweepIcon style={{ fontSize: '15px' }} />
                         Trash & Archived
