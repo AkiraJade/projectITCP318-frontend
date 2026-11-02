@@ -186,7 +186,7 @@ const TrashList = () => {
                   objectFit: 'cover',
                   display: 'block'
                 }}
-                onError={(e) => { e.target.style.display = 'none'; }}
+                onError={(e) => { e.target.onerror = null; e.target.src = '/images/Dosnoventa_company_x.webp'; }}
               />
             ) : (
               <span style={{
@@ -489,7 +489,7 @@ const TrashList = () => {
     name: p.name,
     category: p.category,
     price: p.price,
-    image: p.images?.[0]?.url || '',
+    image: p.images?.[0]?.url || '/images/Dosnoventa_company_x.webp',
     deletedAt: p.deletedAt ? new Date(p.deletedAt).toLocaleDateString() : 'Recent',
     deletedBy: p.deletedBy?.name || p.deletedBy?.email || 'Admin',
   }));

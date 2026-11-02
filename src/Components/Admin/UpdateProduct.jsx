@@ -75,15 +75,16 @@ const UpdateProduct = () => {
 
     const updateProduct = async (id, productData) => {
         try {
+            setLoading(true);
             const config = getAdminConfig();
-            config.headers = {
-                ...config.headers,
-                'Content-Type': 'multipart/form-data'
-            };
-            const { data } = await axios.put(`${import.meta.env.VITE_API}/admin/product/${id}`, productData, config)
-            setIsUpdated(data.success)
+            // Do not manually set Content-Type to multipart/form-data;
+            // Axios automatically generates the correct header with boundary for FormData
+            const { data } = await axios.put(`${import.meta.env.VITE_API}/admin/product/${id}`, productData, config);
+            setIsUpdated(data.success);
+            setLoading(false);
         } catch (error) {
-            setUpdateError(error?.response?.data?.message || error.message)
+            setUpdateError(error?.response?.data?.message || error.message);
+            setLoading(false);
         }
     }
 
@@ -129,21 +130,21 @@ const UpdateProduct = () => {
     }
 
     const onChange = e => {
-        const files = Array.from(e.target.files)
+        const files = Array.from(e.target.files || []);
+        if (files.length === 0) return;
         setImagesPreview([]);
-        setImages([])
-        setOldImages([])
+        setImages([]);
         files.forEach(file => {
             const reader = new FileReader();
             reader.onload = () => {
                 if (reader.readyState === 2) {
-                    setImagesPreview(oldArray => [...oldArray, reader.result])
-                    setImages(oldArray => [...oldArray, reader.result])
+                    setImagesPreview(oldArray => [...oldArray, reader.result]);
+                    setImages(oldArray => [...oldArray, reader.result]);
                 }
-            }
-            reader.readAsDataURL(file)
-        })
-    }
+            };
+            reader.readAsDataURL(file);
+        });
+    };
 
     return (
         <div className="ds-admin-form-card" style={{ maxWidth: 780, margin: '0 auto' }}>
@@ -263,14 +264,19 @@ const UpdateProduct = () => {
                         </div>
                     </div>
 
-                    {oldImages && oldImages.length > 0 && (
+                    {oldImages && oldImages.length > 0 ? (
                         <div style={{ marginTop: '14px' }}>
                             <div style={{ fontSize: '11.5px', color: '#6B7280', marginBottom: '6px', fontWeight: 600, textTransform: 'uppercase' }}>Current Stored Images</div>
                             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                                {oldImages.map(img => (
-                                    <img key={img.public_id || img.url} src={img.url} alt={img.url} style={{ width: '64px', height: '64px', objectFit: 'cover', borderRadius: '6px', border: '1px solid #E5E7EB' }} />
+                                {oldImages.map((img, i) => (
+                                    <img key={img.public_id || img.url || i} src={img.url || '/images/Dosnoventa_company_x.webp'} alt={img.url || 'Product image'} onError={(e) => { e.target.src = '/images/Dosnoventa_company_x.webp'; }} style={{ width: '64px', height: '64px', objectFit: 'cover', borderRadius: '6px', border: '1px solid #E5E7EB' }} />
                                 ))}
                             </div>
+                        </div>
+                    ) : (
+                        <div style={{ marginTop: '14px' }}>
+                            <div style={{ fontSize: '11.5px', color: '#6B7280', marginBottom: '6px', fontWeight: 600, textTransform: 'uppercase' }}>Current Stored Images</div>
+                            <div style={{ fontSize: '12px', color: '#9CA3AF', fontStyle: 'italic' }}>No stored images found. Please upload an image above.</div>
                         </div>
                     )}
 

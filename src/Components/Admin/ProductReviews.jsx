@@ -226,13 +226,12 @@ const ProductReviews = () => {
 
                 {searchedId && targetProduct && (
                     <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid #EAECF0', display: 'flex', alignItems: 'center', gap: '16px' }}>
-                        {targetProduct.images && targetProduct.images[0] && (
-                            <img
-                                src={targetProduct.images[0].url}
-                                alt={targetProduct.name}
-                                style={{ width: '48px', height: '48px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #E5E7EB' }}
-                            />
-                        )}
+                        <img
+                            src={targetProduct.images?.[0]?.url || '/images/Dosnoventa_company_x.webp'}
+                            alt={targetProduct.name}
+                            onError={(e) => { e.target.onerror = null; e.target.src = '/images/Dosnoventa_company_x.webp'; }}
+                            style={{ width: '48px', height: '48px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #E5E7EB' }}
+                        />
                         <div>
                             <div style={{ color: '#111827', fontWeight: 600, fontSize: '14px' }}>
                                 {targetProduct.name}

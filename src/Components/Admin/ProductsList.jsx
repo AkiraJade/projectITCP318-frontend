@@ -127,7 +127,7 @@ const ProductsList = () => {
                   objectFit: 'cover',
                   display: 'block'
                 }}
-                onError={(e) => { e.target.style.display = 'none'; }}
+                onError={(e) => { e.target.onerror = null; e.target.src = '/images/Dosnoventa_company_x.webp'; }}
               />
             ) : (
               <span style={{
@@ -256,7 +256,7 @@ const ProductsList = () => {
     id: product._id,
     name: product.name,
     category: product.category,
-    image: product.images?.[0]?.url || '',
+    image: product.images?.[0]?.url || '/images/Dosnoventa_company_x.webp',
     price: `$${Number(product.price).toFixed(2)}`,
     stock: product.stock,
   }));
