@@ -110,16 +110,27 @@ const OrdersList = () => {
         {
             field: 'customer',
             headerName: 'Customer',
-            flex: 1,
-            minWidth: 140,
+            flex: 1.2,
+            minWidth: 160,
             renderCell: (params) => (
-                <span style={{
-                    fontSize: '13.5px',
-                    fontWeight: 600,
-                    color: '#101828'
-                }}>
-                    {params.value}
-                </span>
+                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', lineHeight: 1.3 }}>
+                    <span style={{
+                        fontSize: '13.5px',
+                        fontWeight: 600,
+                        color: 'var(--ds-admin-text-main, #101828)'
+                    }}>
+                        {params.value}
+                    </span>
+                    {params.row.destination && (
+                        <span style={{
+                            fontSize: '11px',
+                            color: 'var(--ds-admin-text-muted, #667085)',
+                            marginTop: '2px'
+                        }}>
+                            📍 {params.row.destination}
+                        </span>
+                    )}
+                </div>
             )
         },
         {
@@ -197,14 +208,24 @@ const OrdersList = () => {
         }
     ];
 
-    const rows = allOrders.map((order) => ({
-        id: order._id,
-        rawId: order._id,
-        customer: order.user?.name || order.shippingInfo?.city || 'Guest Rider',
-        numofItems: order.orderItems?.length || 0,
-        amount: order.totalPrice,
-        status: order.orderStatus,
-    }));
+    const rows = allOrders.map((order) => {
+        const customerName = (typeof order.user === 'object' && order.user?.name)
+            ? order.user.name
+            : (order.shippingInfo?.recipientName || order.shippingInfo?.name || 'Guest Rider');
+        const customerEmail = typeof order.user === 'object' ? order.user?.email : '';
+        const destination = [order.shippingInfo?.city, order.shippingInfo?.country].filter(Boolean).join(', ');
+
+        return {
+            id: order._id,
+            rawId: order._id,
+            customer: customerName,
+            customerEmail: customerEmail,
+            destination: destination,
+            numofItems: order.orderItems?.length || 0,
+            amount: order.totalPrice,
+            status: order.orderStatus,
+        };
+    });
 
     const handleExportCSV = () => {
         const exportColumns = [
